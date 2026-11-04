@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<views:BaseView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ShoppingApp.Views"
+    x:Class="ShoppingApp.Views.ProductView"
+    Title="Tadka Catalogue">
+
+    <Grid Padding="20"
+          RowDefinitions="Auto,Auto,*"
+          RowSpacing="15">
+
+        <!-- Tadka heading -->
+        <Label Grid.Row="0"
+               Text="Tadka"
+               FontFamily="JainiRegular"
+               FontSize="42"
+               HorizontalOptions="Center" />
+
+        <!-- Customer information -->
+        <Label Grid.Row="1"
+       Text="{Binding CustomerDisplayName, StringFormat='Welcome to Tadka, {0}! Browse our products.'}"
+       FontSize="16"
+       HorizontalOptions="Center"
+       HorizontalTextAlignment="Center" />
+
+        <!-- Product catalogue -->
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Products}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Padding="15"
+                            Margin="0,5"
+                            Stroke="#D6B8A8"
+                            StrokeThickness="1">
+
+                        <VerticalStackLayout Spacing="6">
+                            <Image Source="{Binding ImageName}"
+                                   HeightRequest="150"
+                                   WidthRequest="150"
+                                   Aspect="AspectFit"
+                                   HorizontalOptions="Center" />
+
+                            <Label Text="{Binding ProductName}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            
+                            <Label Text="{Binding CategoryName}"
+                                    FontSize="13"
+                                    TextColor="Gray" />
+
+                            <Label Text="{Binding ProductDescription}"
+                                   FontSize="13"
+                                   TextColor="Gray" />
+
+                            <Label Text="{Binding ProductPrice, StringFormat='Price: R{0:F2}'}"
+                                   FontSize="15"
+                                   TextColor="#621B2D" />
+
+                            <Label Text="{Binding StockAvailable, StringFormat='Available stock: {0}'}"
+                                   FontSize="13" />
+                            <Button Text="View Details"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}},
+                                    Path=BindingContext.OpenProductDetailsCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="#621B2D"
+                                    TextColor="White"
+                                    CornerRadius="10" />
+
+                        </VerticalStackLayout>
+
+                    </Border>
+                    
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</views:BaseView>

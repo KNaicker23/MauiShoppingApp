@@ -81,3 +81,43 @@ build_metadata.AdditionalFiles.Inflator = SourceGen
 build_metadata.AdditionalFiles.NoWarn = 
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
+
+[C:/learningnet_home/MauiShoppingApp/ShoppingApp/Views/CartView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShoppingApp.Views.CartView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CartView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CartView.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[C:/learningnet_home/MauiShoppingApp/ShoppingApp/Views/CustomerView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShoppingApp.Views.CustomerView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CustomerView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CustomerView.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[C:/learningnet_home/MauiShoppingApp/ShoppingApp/Views/ProductDetailsView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShoppingApp.Views.ProductDetailsView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ProductDetailsView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ProductDetailsView.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[C:/learningnet_home/MauiShoppingApp/ShoppingApp/Views/ProductView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShoppingApp.Views.ProductView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ProductView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ProductView.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 

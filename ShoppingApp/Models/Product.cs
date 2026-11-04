@@ -20,11 +20,15 @@ namespace ShoppingApp.Models
         public string? ProductDescription { get; set; }
 
         [NotNull]
-        public double ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
 
         [NotNull]
         public int StockAvailable { get; set; }
 
         public string? ImageName { get; set; }
+       
+
+        [Ignore]
+        public string CategoryName { get; set; } = string.Empty;
     }
 }

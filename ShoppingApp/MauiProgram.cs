@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using ShoppingApp.Services;
+using ShoppingApp.ViewModels;
+using ShoppingApp.Views;
 
 namespace ShoppingApp
 {
@@ -15,9 +18,26 @@ namespace ShoppingApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Jaini-Regular.ttf", "JainiRegular");
                 });
+            builder.Services.AddSingleton<DatabaseService>();
 
+            builder.Services.AddTransient<CustomerViewModel>();
+            builder.Services.AddTransient<CustomerView>();
+
+            builder.Services.AddTransient<ProductViewModel>();
+            builder.Services.AddTransient<ProductView>();
+            
+            builder.Services.AddTransient<ProductDetailsViewModel>();
+            builder.Services.AddTransient<ProductDetailsView>();
+
+            builder.Services.AddTransient<CartViewModel>();
+            builder.Services.AddTransient<CartView>();
+
+
+            builder.Services.AddTransient<AppShell>();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
+
+            
 #endif
 
             return builder.Build();

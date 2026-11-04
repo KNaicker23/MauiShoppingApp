@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ShoppingApp.Views"
+    x:Class="ShoppingApp.Views.ProductDetailsView"
+    Title="Product Details">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="15">
+
+            <Image Source="{Binding SelectedProduct.ImageName}"
+                   HeightRequest="250"
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center" />
+
+            <Label Text="{Binding SelectedProduct.ProductName}"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="{Binding SelectedProduct.CategoryName}"
+                   FontSize="15"
+                   TextColor="Gray"
+                   HorizontalOptions="Center" />
+
+            <Label Text="{Binding SelectedProduct.ProductDescription}"
+                   FontSize="16" />
+
+            <Label Text="{Binding SelectedProduct.ProductPrice,
+                                  StringFormat='Price: R{0:F2}'}"
+                   FontSize="22"
+                   TextColor="#621B2D"
+                   FontAttributes="Bold" />
+
+            <Label Text="{Binding SelectedProduct.StockAvailable,
+                                  StringFormat='Available stock: {0}'}"
+                   FontSize="15" />
+
+            <Label Text="Select Quantity"
+                   FontSize="17"
+                   FontAttributes="Bold" />
+
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Spacing="25">
+
+                <Button Text="−"
+                        Command="{Binding DecreaseQuantityCommand}"
+                        BackgroundColor="#D6B8A8"
+                        TextColor="#422134"
+                        WidthRequest="50" />
+
+                <Label Text="{Binding Quantity}"
+                       FontSize="22"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+
+                <Button Text="+"
+                        Command="{Binding IncreaseQuantityCommand}"
+                        BackgroundColor="#621B2D"
+                        TextColor="White"
+                        WidthRequest="50" />
+
+            </HorizontalStackLayout>
+
+            <Button Text="Add to Cart"
+                    Command="{Binding AddToCartCommand}"
+                    BackgroundColor="#621B2D"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="50" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</views:BaseView>
