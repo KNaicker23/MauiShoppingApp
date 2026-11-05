@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<views:BaseView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ShoppingApp.Views"
+    x:Class="ShoppingApp.Views.OrderConfirmationView"
+    Title="Order Confirmation">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="20"
+            VerticalOptions="Center">
+
+            <Label
+                Text="✓"
+                FontSize="70"
+                TextColor="#621B2D"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Thank You!"
+                FontFamily="JainiRegular"
+                FontSize="42"
+                HorizontalOptions="Center"
+                TextColor="#621B2D" />
+
+            <Label
+                Text="Your order has been placed successfully!"
+                FontSize="18"
+                HorizontalTextAlignment="Center" />
+
+            <Border
+                Padding="20"
+                Stroke="#D6B8A8"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 12">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="Order Details"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#621B2D"
+                        HorizontalOptions="Center" />
+
+                    <Label
+                        Text="{Binding OrderID, StringFormat='Order Number: #{0}'}"
+                        FontSize="16" />
+
+                    <Label
+                        Text="{Binding CustomerDisplayName, StringFormat='Customer: {0}'}"
+                        FontSize="16" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Label
+                Text="We appreciate you shopping with Tadka!"
+                FontSize="15"
+                HorizontalTextAlignment="Center"
+                TextColor="Gray" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</views:BaseView>

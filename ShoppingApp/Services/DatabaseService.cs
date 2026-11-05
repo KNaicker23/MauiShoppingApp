@@ -137,14 +137,14 @@ namespace ShoppingApp.Services
             {
                 var db = await GetDbConnectionAsync();
 
-                // Validate the requested quantity.
-                if (quantityToAdd <= 0)
+                
+                if (quantityToAdd <= 0)// To validate the requested quantity.
                 {
                     return (false, "Please select a valid quantity.");
                 }
 
-                // Get the latest product information from the database.
-                var product = await db.Table<Product>()
+                
+                var product = await db.Table<Product>()// to  get the latest product information from the database.
                     .Where(p => p.ProductID == productID)
                     .FirstOrDefaultAsync();
 
@@ -166,19 +166,19 @@ namespace ShoppingApp.Services
 
                 int currentQuantity = existingCartItem?.CartItemQuantity ?? 0;
 
-                // Calculate the new total quantity.
-                int newQuantity = currentQuantity + quantityToAdd;
+                
+                int newQuantity = currentQuantity + quantityToAdd;//  the new total quantity.
 
-                // Prevent the customer from exceeding available stock.
-                if (newQuantity > product.StockAvailable)
+                
+                if (newQuantity > product.StockAvailable)// Prevent the customer from exceeding available stock.
                 {
                     return (false,
                         $"Only {product.StockAvailable - currentQuantity} more units can be added.");
                 }
 
-                if (existingCartItem == null)
+                if (existingCartItem == null)//creating new cart item if there is none
                 {
-                    // Create a new cart item.
+                    
                     var newCartItem = new CartItem
                     {
                         CustomerID = customerID,
@@ -190,8 +190,8 @@ namespace ShoppingApp.Services
                 }
                 else
                 {
-                    // Update the existing cart item's quantity.
-                    existingCartItem.CartItemQuantity = newQuantity;
+                    
+                    existingCartItem.CartItemQuantity = newQuantity;// Update the existing cart item's quantity.
 
                     await db.UpdateAsync(existingCartItem);
                 }
@@ -201,6 +201,95 @@ namespace ShoppingApp.Services
             catch (Exception ex)
             {
                 return (false, $"Unable to add product to cart: {ex.Message}");
+            }
+        }
+        public async Task<(bool Success, string Message, int OrderID)>
+    CheckoutAsync(int customerID)
+        {
+            var db = await GetDbConnectionAsync();
+
+            try
+            {
+                int orderID = 0;
+
+                await db.RunInTransactionAsync(connection =>
+                {
+                    // 1. Get the customer's cart items
+                    var cartItems = connection.Table<CartItem>()
+                        .Where(c => c.CustomerID == customerID)
+                        .ToList();
+
+                    if (cartItems.Count == 0)
+                        throw new Exception("Your cart is empty.");
+
+                    decimal orderTotal = 0;
+
+                    var orderProducts = new List<(CartItem CartItem, Product Product)>();
+
+                    // 2. Validate stock and calculate the total
+                    foreach (var cartItem in cartItems)
+                    {
+                        var product = connection.Table<Product>()
+                            .FirstOrDefault(p => p.ProductID == cartItem.ProductID);
+
+                        if (product == null)
+                            throw new Exception(
+                                "A product in your cart could not be found.");
+
+                        if (cartItem.CartItemQuantity <= 0)
+                            throw new Exception("An invalid quantity was found.");
+
+                        if (product.StockAvailable < cartItem.CartItemQuantity)
+                            throw new Exception(
+                                $"Insufficient stock for {product.ProductName}.");
+
+                        orderTotal += product.ProductPrice *
+                                      cartItem.CartItemQuantity;
+
+                        orderProducts.Add((cartItem, product));
+                    }
+
+                    // 3. Create the Order record
+                    var newOrder = new Order
+                    {
+                        CustomerID = customerID,
+                        OrderDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                        OrderTotal = (decimal)orderTotal
+                    };
+
+                    connection.Insert(newOrder);
+
+                    orderID = newOrder.OrderID;
+
+                    // 4. Create OrderItem records and update stock
+                    foreach (var item in orderProducts)
+                    {
+                        var orderItem = new OrderItem
+                        {
+                            OrderID = orderID,
+                            ProductID = item.Product.ProductID,
+                            Quantity = item.CartItem.CartItemQuantity,
+                            PriceAtPurchase = item.Product.ProductPrice
+                        };
+
+                        connection.Insert(orderItem);
+
+                        // Deduct purchased stock
+                        item.Product.StockAvailable -=
+                            item.CartItem.CartItemQuantity;
+
+                        connection.Update(item.Product);
+
+                        // Remove purchased item from cart
+                        connection.Delete(item.CartItem);
+                    }
+                });
+
+                return (true, "Your order was placed successfully!", orderID);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message, 0);
             }
         }
 

@@ -1,64 +1,109 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<views:BaseView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                xmlns:views="clr-namespace:ShoppingApp.Views"
-                x:Class="ShoppingApp.Views.CustomerView"
-                Title="Select Customer">
 
-    <Grid Padding="20"
+<views:BaseView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ShoppingApp.Views"
+    x:Class="ShoppingApp.Views.CustomerView"
+    Title="Select Customer"
+    BackgroundColor="#F7E8CF">
+
+    <Grid Padding="24"
           RowDefinitions="Auto,Auto,*,Auto"
           RowSpacing="20">
 
-        <Label Grid.Row="0"
-               Text="Tadka"
-               FontFamily="JainiRegular"
-               FontSize="42"
-               HorizontalOptions="Center" />
+        <!-- App branding -->
+        <VerticalStackLayout Grid.Row="0"
+                             Spacing="5"
+                             VerticalOptions="Center">
 
-        <Label Grid.Row="1"
-               Text="Please select a customer to continue."
-               FontSize="16"
-               HorizontalOptions="Center" />
+            <Label Text="✦"
+                   FontSize="25"
+                   TextColor="#D98245"
+                   HorizontalOptions="Center" />
 
+            <Label Text="Tadka"
+                   FontFamily="JainiRegular"
+                   FontSize="58"
+                   TextColor="#8B302D"
+                   HorizontalOptions="Center" />
+
+            <Label Text="A taste of home, in every spice."
+                   FontSize="15"
+                   TextColor="#A65E3F"
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+
+        <!-- Welcome message -->
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="6">
+
+            <Label Text="Welcome!"
+                   FontSize="25"
+                   FontAttributes="Bold"
+                   TextColor="#8B302D"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Please select a customer to continue."
+                   FontSize="15"
+                   TextColor="#655044"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+
+        <!-- Customer selection -->
         <CollectionView Grid.Row="2"
-                ItemsSource="{Binding Customers}"
-                SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
-                SelectionMode="Single">
+                        ItemsSource="{Binding Customers}"
+                        SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
+                        SelectionMode="Single"
+                        BackgroundColor="Transparent">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border Padding="15"
-                            Margin="0,5"
-                            Stroke="#D6B8A8"
-                            StrokeThickness="1">
 
-                        <VerticalStackLayout Spacing="5">
+                    <Border Padding="18"
+                            Margin="0,6"
+                            BackgroundColor="#FFF9F0"
+                            Stroke="#D98245"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 14">
+
+                        <VerticalStackLayout Spacing="7">
 
                             <Label Text="{Binding CustomerName}"
-                                   FontSize="18"
-                                   FontAttributes="Bold" />
+                                   FontSize="19"
+                                   FontAttributes="Bold"
+                                   TextColor="#8B302D" />
 
                             <Label Text="{Binding CustomerLastName}"
-                                   FontSize="14" />
+                                   FontSize="15"
+                                   TextColor="#655044" />
 
                             <Label Text="{Binding CustomerEmail}"
                                    FontSize="13"
-                                   TextColor="Gray" />
+                                   TextColor="#A65E3F" />
 
                         </VerticalStackLayout>
 
                     </Border>
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
         </CollectionView>
+
+        <!-- Continue button -->
         <Button Grid.Row="3"
-                Text="Continue"
+                Text="Continue  →"
                 Command="{Binding ContinueCommand}"
-                BackgroundColor="#621B2D"
-                TextColor="White"
-                CornerRadius="12"
-                HeightRequest="50" />
+                BackgroundColor="#8B302D"
+                TextColor="#FFF9F0"
+                FontAttributes="Bold"
+                FontSize="17"
+                CornerRadius="14"
+                HeightRequest="55" />
 
     </Grid>
 

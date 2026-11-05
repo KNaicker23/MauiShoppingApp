@@ -33,6 +33,10 @@ namespace ShoppingApp
             Routing.RegisterRoute(nameof(ProductDetailsView), typeof(ProductDetailsView));
 
             Routing.RegisterRoute(nameof(CartView), typeof(CartView));
+            Routing.RegisterRoute(nameof(OrderConfirmationView), typeof(OrderConfirmationView));
+            Routing.RegisterRoute(nameof(CheckoutView), typeof(CheckoutView));
+
+
 
 
         }

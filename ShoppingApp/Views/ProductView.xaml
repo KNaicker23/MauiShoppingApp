@@ -5,76 +5,143 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ShoppingApp.Views"
     x:Class="ShoppingApp.Views.ProductView"
-    Title="Tadka Catalogue">
+    Title="Tadka Catalogue"
+    BackgroundColor="#F7E8CF">
 
     <Grid Padding="20"
-          RowDefinitions="Auto,Auto,*"
+          RowDefinitions="Auto,Auto,Auto,Auto,*"
           RowSpacing="15">
 
-        <!-- Tadka heading -->
-        <Label Grid.Row="0"
-               Text="Tadka"
-               FontFamily="JainiRegular"
-               FontSize="42"
-               HorizontalOptions="Center" />
+        <!-- Tadka branding -->
+        <VerticalStackLayout Grid.Row="0"
+                             Spacing="2">
 
-        <!-- Customer information -->
-        <Label Grid.Row="1"
-       Text="{Binding CustomerDisplayName, StringFormat='Welcome to Tadka, {0}! Browse our products.'}"
-       FontSize="16"
-       HorizontalOptions="Center"
-       HorizontalTextAlignment="Center" />
+            <Label Text="✦ Tadka ✦"
+                   FontFamily="JainiRegular"
+                   FontSize="48"
+                   TextColor="#8B302D"
+                   HorizontalOptions="Center" />
+
+            <Label Text="A taste of home, in every spice."
+                   FontSize="13"
+                   TextColor="#A65E3F"
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+
+        <!-- Customer welcome -->
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="4">
+
+            <Label
+                Text="{Binding CustomerDisplayName}"
+                FontSize="19"
+                FontAttributes="Bold"
+                TextColor="#8B302D"
+                HorizontalOptions="Center" />
+
+            <Label Text="Explore our spices and pantry essentials."
+                   FontSize="14"
+                   TextColor="#655044"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+
+        <!-- Shopping cart -->
+        <Button Grid.Row="2"
+                Text="🛒  View My Cart"
+                Command="{Binding OpenCartCommand}"
+                BackgroundColor="#D98245"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="12"
+                HeightRequest="48"
+                HorizontalOptions="End" />
+        
+        <Label Grid.Row="3"
+               Text="✦  Our Spice Collection  ✦"
+               FontFamily="JainiRegular"
+               FontSize="25"
+               TextColor="#8B302D"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center" />
 
         <!-- Product catalogue -->
-        <CollectionView Grid.Row="2"
+        <CollectionView Grid.Row="4"
                         ItemsSource="{Binding Products}"
-                        SelectionMode="None">
+                        SelectionMode="None"
+                        BackgroundColor="Transparent">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
 
                     <Border Padding="15"
-                            Margin="0,5"
-                            Stroke="#D6B8A8"
-                            StrokeThickness="1">
+                            Margin="0,7"
+                            BackgroundColor="#FFF9F0"
+                            Stroke="#D98245"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 16">
 
-                        <VerticalStackLayout Spacing="6">
-                            <Image Source="{Binding ImageName}"
-                                   HeightRequest="150"
-                                   WidthRequest="150"
-                                   Aspect="AspectFit"
-                                   HorizontalOptions="Center" />
+                        <VerticalStackLayout Spacing="9">
 
+                            <!-- Product image -->
+                            <Border BackgroundColor="#F7E8CF"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="8">
+
+                                <Image Source="{Binding ImageName}"
+                                       HeightRequest="155"
+                                       WidthRequest="155"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="Center" />
+
+                            </Border>
+
+                            <!-- Product name -->
                             <Label Text="{Binding ProductName}"
-                                   FontSize="18"
-                                   FontAttributes="Bold" />
-                            
-                            <Label Text="{Binding CategoryName}"
-                                    FontSize="13"
-                                    TextColor="Gray" />
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="#8B302D" />
 
+                            <!-- Category -->
+                            <Label Text="{Binding CategoryName}"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   TextColor="#A65E3F" />
+
+                            <!-- Description -->
                             <Label Text="{Binding ProductDescription}"
                                    FontSize="13"
-                                   TextColor="Gray" />
+                                   TextColor="#655044"
+                                   LineBreakMode="WordWrap" />
 
-                            <Label Text="{Binding ProductPrice, StringFormat='Price: R{0:F2}'}"
-                                   FontSize="15"
-                                   TextColor="#621B2D" />
+                            <!-- Price -->
+                            <Label Text="{Binding ProductPrice, StringFormat='R{0:F2}'}"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="#8B302D" />
 
+                            <!-- Stock -->
                             <Label Text="{Binding StockAvailable, StringFormat='Available stock: {0}'}"
-                                   FontSize="13" />
-                            <Button Text="View Details"
+                                   FontSize="13"
+                                   TextColor="#65734A" />
+
+                            <!-- View details -->
+                            <Button Text="View Details  →"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}},
-                                    Path=BindingContext.OpenProductDetailsCommand}"
+                                                      Path=BindingContext.OpenProductDetailsCommand}"
                                     CommandParameter="{Binding .}"
-                                    BackgroundColor="#621B2D"
-                                    TextColor="White"
-                                    CornerRadius="10" />
+                                    BackgroundColor="#8B302D"
+                                    TextColor="#FFF9F0"
+                                    FontAttributes="Bold"
+                                    CornerRadius="10"
+                                    HeightRequest="45" />
 
                         </VerticalStackLayout>
 
                     </Border>
-                    
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>

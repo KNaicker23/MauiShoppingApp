@@ -12,6 +12,7 @@ namespace ShoppingApp.ViewModels;
 public class ProductViewModel : BaseViewModel, IQueryAttributable//allows ViewModel to receive info passed during Shell nav
 {
     public ICommand OpenProductDetailsCommand { get; }
+    public ICommand OpenCartCommand { get; }
     private readonly DatabaseService databaseService;
 
     public ObservableCollection<Product> Products { get; set; } = new();
@@ -40,6 +41,7 @@ public class ProductViewModel : BaseViewModel, IQueryAttributable//allows ViewMo
 
         OpenProductDetailsCommand = new Command<Product>(
     async (product) => await OpenProductDetailsAsync(product));
+        OpenCartCommand = new Command(async () => await OpenCartAsync());
     }
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
@@ -80,6 +82,7 @@ public class ProductViewModel : BaseViewModel, IQueryAttributable//allows ViewMo
     }
     private async Task OpenProductDetailsAsync(Product? product)
     {
+
         if (product == null || SelectedCustomer == null)
             return;
 
@@ -88,6 +91,18 @@ public class ProductViewModel : BaseViewModel, IQueryAttributable//allows ViewMo
             new Dictionary<string, object>
             {
             { "SelectedProduct", product },
+            { "SelectedCustomer", SelectedCustomer }
+            });
+    }
+    private async Task OpenCartAsync()
+    {
+        if (SelectedCustomer == null)
+            return;
+
+        await Shell.Current.GoToAsync(
+            nameof(CartView),
+            new Dictionary<string, object>
+            {
             { "SelectedCustomer", SelectedCustomer }
             });
     }

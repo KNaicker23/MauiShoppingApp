@@ -2,6 +2,7 @@
 using ShoppingApp.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ShoppingApp.Views;
 
 namespace ShoppingApp.ViewModels;
 
@@ -43,7 +44,7 @@ public class CustomerViewModel : BaseViewModel
     {
         if (SelectedCustomer == null)
         {
-            await Shell.Current.DisplayAlert(
+            await Shell.Current.DisplayAlertAsync(
                 "No Customer Selected",
                 "Please select a customer before continuing.",
                 "OK");
@@ -69,7 +70,7 @@ public class CustomerViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            await Shell.Current.DisplayAlert(
+            await Shell.Current.DisplayAlertAsync(
                 "Error",
                 $"Unable to load customers: {ex.Message}",
                 "OK");

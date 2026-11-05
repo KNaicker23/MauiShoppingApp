@@ -92,11 +92,31 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
+[C:/learningnet_home/MauiShoppingApp/ShoppingApp/Views/CheckoutView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShoppingApp.Views.CheckoutView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CheckoutView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CheckoutView.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
 [C:/learningnet_home/MauiShoppingApp/ShoppingApp/Views/CustomerView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ShoppingApp.Views.CustomerView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\CustomerView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\CustomerView.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[C:/learningnet_home/MauiShoppingApp/ShoppingApp/Views/OrderConfirmationView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShoppingApp.Views.OrderConfirmationView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\OrderConfirmationView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\OrderConfirmationView.xaml
 build_metadata.AdditionalFiles.Inflator = SourceGen
 build_metadata.AdditionalFiles.NoWarn = 
 build_metadata.AdditionalFiles.EnableDiagnostics = 

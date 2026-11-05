@@ -32,6 +32,12 @@ namespace ShoppingApp
             builder.Services.AddTransient<CartViewModel>();
             builder.Services.AddTransient<CartView>();
 
+            builder.Services.AddTransient<OrderConfirmationViewModel>();
+            builder.Services.AddTransient<OrderConfirmationView>();
+
+            builder.Services.AddTransient<CheckoutViewModel>();
+            builder.Services.AddTransient<CheckoutView>();
+
 
             builder.Services.AddTransient<AppShell>();
 #if DEBUG
