@@ -12,7 +12,7 @@
           RowDefinitions="Auto,Auto,Auto,Auto,*"
           RowSpacing="15">
 
-        <!-- Tadka branding -->
+        
         <VerticalStackLayout Grid.Row="0"
                              Spacing="2">
 
@@ -29,7 +29,7 @@
 
         </VerticalStackLayout>
 
-        <!-- Customer welcome -->
+       
         <VerticalStackLayout Grid.Row="1"
                              Spacing="4">
 
@@ -48,7 +48,7 @@
 
         </VerticalStackLayout>
 
-        <!-- Shopping cart -->
+        
         <Button Grid.Row="2"
                 Text="🛒  View My Cart"
                 Command="{Binding OpenCartCommand}"
@@ -67,7 +67,7 @@
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center" />
 
-        <!-- Product catalogue -->
+        
         <CollectionView Grid.Row="4"
                         ItemsSource="{Binding Products}"
                         SelectionMode="None"
@@ -85,7 +85,7 @@
 
                         <VerticalStackLayout Spacing="9">
 
-                            <!-- Product image -->
+                            
                             <Border BackgroundColor="#F7E8CF"
                                     StrokeThickness="0"
                                     StrokeShape="RoundRectangle 12"
@@ -96,39 +96,41 @@
                                        WidthRequest="155"
                                        Aspect="AspectFit"
                                        HorizontalOptions="Center" />
+                                
 
                             </Border>
 
-                            <!-- Product name -->
+
+                            
                             <Label Text="{Binding ProductName}"
                                    FontSize="20"
                                    FontAttributes="Bold"
                                    TextColor="#8B302D" />
 
-                            <!-- Category -->
+                            
                             <Label Text="{Binding CategoryName}"
                                    FontSize="13"
                                    FontAttributes="Bold"
                                    TextColor="#A65E3F" />
 
-                            <!-- Description -->
+                            
                             <Label Text="{Binding ProductDescription}"
                                    FontSize="13"
                                    TextColor="#655044"
                                    LineBreakMode="WordWrap" />
 
-                            <!-- Price -->
+                            
                             <Label Text="{Binding ProductPrice, StringFormat='R{0:F2}'}"
                                    FontSize="20"
                                    FontAttributes="Bold"
                                    TextColor="#8B302D" />
 
-                            <!-- Stock -->
+                            
                             <Label Text="{Binding StockAvailable, StringFormat='Available stock: {0}'}"
                                    FontSize="13"
                                    TextColor="#65734A" />
 
-                            <!-- View details -->
+                            
                             <Button Text="View Details  →"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}},
                                                       Path=BindingContext.OpenProductDetailsCommand}"

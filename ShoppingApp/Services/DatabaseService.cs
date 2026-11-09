@@ -204,7 +204,7 @@ namespace ShoppingApp.Services
             }
         }
         public async Task<(bool Success, string Message, int OrderID)>
-    CheckoutAsync(int customerID)
+           CheckoutAsync(int customerID)
         {
             var db = await GetDbConnectionAsync();
 
@@ -214,8 +214,8 @@ namespace ShoppingApp.Services
 
                 await db.RunInTransactionAsync(connection =>
                 {
-                    // 1. Get the customer's cart items
-                    var cartItems = connection.Table<CartItem>()
+                    
+                    var cartItems = connection.Table<CartItem>()// Get the customer's cart items
                         .Where(c => c.CustomerID == customerID)
                         .ToList();
 
@@ -226,8 +226,8 @@ namespace ShoppingApp.Services
 
                     var orderProducts = new List<(CartItem CartItem, Product Product)>();
 
-                    // 2. Validate stock and calculate the total
-                    foreach (var cartItem in cartItems)
+                   
+                    foreach (var cartItem in cartItems) //to validate stock and calculate the total
                     {
                         var product = connection.Table<Product>()
                             .FirstOrDefault(p => p.ProductID == cartItem.ProductID);
@@ -240,31 +240,30 @@ namespace ShoppingApp.Services
                             throw new Exception("An invalid quantity was found.");
 
                         if (product.StockAvailable < cartItem.CartItemQuantity)
-                            throw new Exception(
-                                $"Insufficient stock for {product.ProductName}.");
+                            throw new Exception($"Insufficient stock for {product.ProductName}.");
 
                         orderTotal += product.ProductPrice *
-                                      cartItem.CartItemQuantity;
+                                      cartItem.CartItemQuantity;//logic to calc the order total
 
-                        orderProducts.Add((cartItem, product));
+                        orderProducts.Add((cartItem, product));//add the product to cartitem which then gets ordered
                     }
 
-                    // 3. Create the Order record
-                    var newOrder = new Order
+                   
+                    var newOrder = new Order //Create the Order record
                     {
                         CustomerID = customerID,
                         OrderDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                        OrderTotal = (decimal)orderTotal
+                        OrderTotal = (decimal)orderTotal//casting
                     };
 
                     connection.Insert(newOrder);
 
                     orderID = newOrder.OrderID;
 
-                    // 4. Create OrderItem records and update stock
-                    foreach (var item in orderProducts)
+                    
+                    foreach (var item in orderProducts)// Creates OrderItem records and update stock
                     {
-                        var orderItem = new OrderItem
+                        var orderItem = new OrderItem//instances
                         {
                             OrderID = orderID,
                             ProductID = item.Product.ProductID,
@@ -274,14 +273,13 @@ namespace ShoppingApp.Services
 
                         connection.Insert(orderItem);
 
-                        // Deduct purchased stock
-                        item.Product.StockAvailable -=
-                            item.CartItem.CartItemQuantity;
+                        
+                        item.Product.StockAvailable -= item.CartItem.CartItemQuantity;// Deduct purchased stock
 
                         connection.Update(item.Product);
 
-                        // Remove purchased item from cart
-                        connection.Delete(item.CartItem);
+                        
+                        connection.Delete(item.CartItem);// Removes purchased item from cart
                     }
                 });
 

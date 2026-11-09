@@ -60,8 +60,8 @@ public class ProductViewModel : BaseViewModel, IQueryAttributable//allows ViewMo
 
             foreach (var product in productList)
             {
-                var category = categoryList.FirstOrDefault(
-                    c => c.CategoryID == product.CategoryID);
+                var category = categoryList.FirstOrDefault(c => c.CategoryID == product.CategoryID);
+
 
                 product.CategoryName = category?.CategoryName ?? "Other";
             }

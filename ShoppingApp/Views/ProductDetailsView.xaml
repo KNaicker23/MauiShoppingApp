@@ -11,7 +11,7 @@
         <VerticalStackLayout Padding="20"
                              Spacing="18">
 
-            <!-- Tadka Branding -->
+            
             <VerticalStackLayout Spacing="2">
                 <Label Text="✦ Tadka ✦"
                        FontFamily="JainiRegular"
@@ -25,7 +25,7 @@
                        HorizontalOptions="Center" />
             </VerticalStackLayout>
 
-            <!-- Product Information Card -->
+            
             <Border BackgroundColor="#FFF9F0"
                     Stroke="#D98245"
                     StrokeThickness="1"
@@ -73,7 +73,7 @@
                     <BoxView HeightRequest="1"
                              Color="#E8AE38" />
 
-                    <!-- Quantity Selection -->
+                    
                     <Label Text="Select Quantity"
                            FontSize="18"
                            FontAttributes="Bold"
@@ -108,7 +108,7 @@
 
                     </HorizontalStackLayout>
 
-                    <!-- Add to Cart -->
+                    
                     <Button Text="🛒  Add to Cart"
                             Command="{Binding AddToCartCommand}"
                             BackgroundColor="#8B302D"

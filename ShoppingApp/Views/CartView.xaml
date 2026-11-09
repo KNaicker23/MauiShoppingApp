@@ -12,7 +12,7 @@
           RowDefinitions="Auto,*,Auto"
           RowSpacing="15">
 
-        <!-- Tadka Branding and Cart Heading -->
+        
         <VerticalStackLayout Grid.Row="0"
                              Spacing="3">
 
@@ -40,7 +40,7 @@
                    HorizontalOptions="Center" />
         </VerticalStackLayout>
 
-        <!-- Cart Products -->
+        
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding CartItems}"
                         SelectionMode="None"
@@ -136,7 +136,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Cart Total and Checkout -->
+       
         <Border Grid.Row="2"
                 BackgroundColor="#FFF9F0"
                 Stroke="#D98245"

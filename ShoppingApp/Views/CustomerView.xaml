@@ -12,7 +12,7 @@
           RowDefinitions="Auto,Auto,*,Auto"
           RowSpacing="20">
 
-        <!-- App branding -->
+        
         <VerticalStackLayout Grid.Row="0"
                              Spacing="5"
                              VerticalOptions="Center">
@@ -35,7 +35,7 @@
 
         </VerticalStackLayout>
 
-        <!-- Welcome message -->
+        
         <VerticalStackLayout Grid.Row="1"
                              Spacing="6">
 
@@ -53,7 +53,7 @@
 
         </VerticalStackLayout>
 
-        <!-- Customer selection -->
+        
         <CollectionView Grid.Row="2"
                         ItemsSource="{Binding Customers}"
                         SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
@@ -94,7 +94,7 @@
 
         </CollectionView>
 
-        <!-- Continue button -->
+        
         <Button Grid.Row="3"
                 Text="Continue  →"
                 Command="{Binding ContinueCommand}"
